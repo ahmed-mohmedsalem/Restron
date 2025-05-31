@@ -19,6 +19,7 @@ import 'package:restron1/splashPage.dart';
 import 'package:restron1/settings/statistics.dart';
 import 'package:restron1/tables.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(
     RemoteMessage messageId) async {
@@ -30,11 +31,11 @@ void main() async {
   await Firebase.initializeApp();
   // ignore: unused_label
   options:
-  const FirebaseOptions(
-      apiKey: 'AIzaSyBE63t8mQzuQH-BsMSDGq_h5e_ixWwZVZo',
-      appId: '1:90517094160:android:832ede7bd0b375f4fc6f95',
-      messagingSenderId: '90517094160',
-      projectId: 'restron1-d5cc3');
+  FirebaseOptions(
+      apiKey: dotenv.env['apiKey']!,
+      appId: dotenv.env['appId']!,
+      messagingSenderId: dotenv.env['messagingSenderId']!,
+      projectId: dotenv.env['projectId']!);
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(const MyApp());
 }
