@@ -177,10 +177,12 @@ class _StatisticsState extends State<Statistics> {
     // Calculate percentage changes
     double weeklyPercentage = weeklyTotalSales == 0
         ? 0
-        : ((weeklyTotalSales - prevWeeklyTotalSales) / weeklyTotalSales) * 100;
+        : ((weeklyTotalSales - prevWeeklyTotalSales) / prevWeeklyTotalSales) *
+            100;
     double monthlyPercentage = monthlyTotalSales == 0
         ? 0
-        : ((monthlyTotalSales - prevMonthlyTotalSales) / monthlyTotalSales) *
+        : ((monthlyTotalSales - prevMonthlyTotalSales) /
+                prevMonthlyTotalSales) *
             100;
 
     final data = {
@@ -232,7 +234,7 @@ class _StatisticsState extends State<Statistics> {
     final salesData = _showWeekly ? data['weeklyData'] : data['monthlyData'];
     final labels = _showWeekly ? data['labelsWeekly'] : data['labelsMonthly'];
     final maxSales = data['maxSales'] as double;
-    final barWidth = _showWeekly ? 16.0 : 6.0; // Reduced width for monthly view
+    final barWidth = _showWeekly ? 16.0 : 6.0;
 
     return Container(
       height: 200,
@@ -460,7 +462,6 @@ class _StatisticsState extends State<Statistics> {
                                   ),
                                 ),
 
-                          // Sales Section
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 30, vertical: 4),
@@ -643,7 +644,7 @@ class _StatisticsState extends State<Statistics> {
                                     ],
                                   ),
                           ),
-                          // Custom Bar Chart
+
                           _buildCustomBarChart(context),
                           Divider(
                             height: 1,
@@ -715,7 +716,7 @@ class _StatisticsState extends State<Statistics> {
                                           ],
                                         ),
                                         Text(
-                                          "${_cachedSalesData!['monthlyPercentage'] >= 0 ? '+' : '-'} ${_cachedSalesData!['weeklyPercentage'].toStringAsFixed(2)}%",
+                                          "${_cachedSalesData!['weeklyPercentage'] >= 0 ? '+' : ''} ${(_cachedSalesData!['weeklyPercentage']).toStringAsFixed(2)}%",
                                           style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
@@ -790,7 +791,7 @@ class _StatisticsState extends State<Statistics> {
                                           ],
                                         ),
                                         Text(
-                                          "${_cachedSalesData!['monthlyPercentage'] >= 0 ? '+' : '-'} ${_cachedSalesData!['monthlyPercentage'].toStringAsFixed(2)}%",
+                                          "${_cachedSalesData!['monthlyPercentage'] >= 0 ? '+' : ''} ${_cachedSalesData!['monthlyPercentage'].toStringAsFixed(2)}%",
                                           style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,

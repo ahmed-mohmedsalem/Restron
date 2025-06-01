@@ -91,7 +91,9 @@ class _MenuState extends State<Menu> {
             IconButton(
               onPressed: () {
                 setState(() {
+                  url = '';
                   _showForm = true;
+                  isEditing = false;
                 });
               },
               icon: const Icon(
@@ -123,7 +125,10 @@ class _MenuState extends State<Menu> {
         body: GestureDetector(
           onTap: () {
             setState(() {
+              url = '';
               _showForm = false;
+              isEditing = false;
+              _menuNameController.text = '';
             });
           },
           child: Stack(
@@ -307,7 +312,7 @@ class _MenuState extends State<Menu> {
                                       width: 80,
                                       height: 80,
                                       decoration: BoxDecoration(
-                                        shape: BoxShape.rectangle,
+                                        shape: BoxShape.circle,
                                         color: theme.primaryColorLight,
                                         border: Border.all(
                                           color: theme.primaryColor,
@@ -414,6 +419,7 @@ class _MenuState extends State<Menu> {
                                     setState(() {
                                       url = '';
                                       _showForm = false;
+                                      isEditing = false;
                                     });
                                   },
                                   style: ElevatedButton.styleFrom(
