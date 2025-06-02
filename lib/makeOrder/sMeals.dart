@@ -755,10 +755,16 @@ class _SelectMealsState extends State<SelectMeals> {
                                           Row(
                                             children: [
                                               IconButton(
-                                                onPressed: () {
+                                                onPressed: () async {
                                                   removeMealFromOrder(
                                                       mealsList[index]);
-
+                                                  if (getMealNum(
+                                                          mealsList[index]) ==
+                                                      0) {
+                                                    selectedMealsWithoutR
+                                                        .remove(
+                                                            mealsList[index]);
+                                                  }
                                                   setState(() {});
                                                 },
                                                 icon: Icon(

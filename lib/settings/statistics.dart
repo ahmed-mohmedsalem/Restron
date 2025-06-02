@@ -98,7 +98,7 @@ class _StatisticsState extends State<Statistics> {
       if (doc.exists && doc.data()!['tSales'] != null) {
         weeklyData[now.weekday - 1 - i] =
             (doc.data()!['tSales'] as num).toDouble();
-        weeklyTotalSales += weeklyData[6 - i];
+        weeklyTotalSales += weeklyData[now.weekday - 1 - i];
         if (weeklyData[now.weekday - 1 - i] > maxSales) {
           maxSales = weeklyData[now.weekday - 1 - i];
         }

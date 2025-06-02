@@ -495,11 +495,17 @@ class _EditMenuState extends State<EditMenu> {
                             ),
                             ElevatedButton(
                               onPressed: () async {
-                                await deleteCategory(
-                                    categoriesList[_selectedIndex].id);
-                                await getCategories();
+                                if (_isEditingCategory) {
+                                  await deleteCategory(
+                                      categoriesList[_selectedIndex].id);
+                                  await getCategories();
+                                }
+
                                 setState(() {
-                                  _selectedIndex = 0;
+                                  if (_isEditingCategory) {
+                                    _selectedIndex = 0;
+                                    _isEditingCategory = false;
+                                  }
                                   _showCategoryForm = false;
                                 });
                               },
@@ -529,7 +535,6 @@ class _EditMenuState extends State<EditMenu> {
           if (_showMealForm)
             Center(
               child: SingleChildScrollView(
-                // Added to make form scrollable
                 child: GestureDetector(
                   onTap: () {},
                   child: Container(
@@ -716,6 +721,7 @@ class _EditMenuState extends State<EditMenu> {
                                         'Description':
                                             _mealDescriptionController.text,
                                         'Price': _mealPriceController.text,
+                                        'imgUrl': url,
                                       })
                                     : await FirebaseFirestore.instance
                                         .collection('restaurants')

@@ -194,14 +194,6 @@ class _TablesState extends State<Tables> with SingleTickerProviderStateMixin {
                       color: theme.primaryColor,
                     ),
                   ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.add_circle_rounded,
-                      size: 40,
-                      color: theme.primaryColor,
-                    ),
-                    onPressed: () {},
-                  ),
                 ],
               ),
             ),

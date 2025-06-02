@@ -28,14 +28,14 @@ Future<void> _firebaseMessagingBackgroundHandler(
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load();
-  await Firebase.initializeApp(
-      // ignore: unused_label
-      options: FirebaseOptions(
-          apiKey: dotenv.env['apiKey']!,
-          appId: dotenv.env['appId']!,
-          messagingSenderId: dotenv.env['messagingSenderId']!,
-          projectId: dotenv.env['projectId']!));
+  await Firebase.initializeApp();
+  // ignore: unused_label
+  options:
+  const FirebaseOptions(
+      apiKey: 'AIzaSyBE63t8mQzuQH-BsMSDGq_h5e_ixWwZVZo',
+      appId: '1:90517094160:android:832ede7bd0b375f4fc6f95',
+      messagingSenderId: '90517094160',
+      projectId: 'restron1-d5cc3');
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(const MyApp());
 }
